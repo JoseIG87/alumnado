@@ -1,0 +1,20 @@
+package com.tecso.app.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.tecso.app.model.Alumno;
+
+public interface AlumnoRepository extends CrudRepository<Alumno, Long> {
+	
+	List<Alumno> findByLastName(String lastName);
+	
+	@Query("select from alumno a where a.idpersona=:id")
+	Alumno findByPersona(Long id);
+	
+	@Query("select from alumno a where a.legajo=:legajo")
+	Alumno findByLegajo(Integer legajo);
+	
+}

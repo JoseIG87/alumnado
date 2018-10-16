@@ -1,0 +1,15 @@
+package com.tecso.app.service;
+
+import com.tecso.app.model.Alumno;
+
+public interface AlumnoService {
+	
+	Alumno obtenerAlumnoPorId(Long idAlumno);
+	
+	Alumno obtenerAlumnoPorIdPersona(Long idPersona);
+	
+	void guardarOActualizar(Alumno alumno);
+	
+	void eliminarAlumno(Long id);
+
+}

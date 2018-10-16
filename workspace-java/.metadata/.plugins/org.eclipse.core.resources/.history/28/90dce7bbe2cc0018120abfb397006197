@@ -1,0 +1,9 @@
+package com.tecso.app.model;
+
+public class Alumno {
+
+	public Alumno() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

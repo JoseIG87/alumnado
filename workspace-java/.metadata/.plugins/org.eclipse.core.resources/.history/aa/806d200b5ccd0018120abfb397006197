@@ -1,0 +1,9 @@
+package com.tecso.app.service;
+
+import com.tecso.app.model.Persona;
+
+public interface PersonaService {
+	
+	Persona obtenerPersonaPorId (Long idPersona);
+
+}

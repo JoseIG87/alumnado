@@ -1,0 +1,108 @@
+package com.tecso.app.dto;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import com.tecso.app.utils.TipoDocumento;
+
+public class AlumnoPersonaDTO implements Serializable {
+	private static final long serialVersionUID = 4343833472073118551L;
+	
+	private Integer idAlumno;
+	
+	private TipoDocumento tipoDoc;
+	
+	private Long documento;
+	
+	private String nombre;
+	
+	private String apellido;
+	
+	private Date fechaNac;
+	
+	private String direccion;
+	
+	private Integer legajo;
+
+	public AlumnoPersonaDTO() {
+		super();
+	}
+
+	public AlumnoPersonaDTO(Integer idAlumno, TipoDocumento tipoDoc, Long documento, String nombre, String apellido,
+			Date fechaNac, String direccion, Integer legajo) {
+		super();
+		this.idAlumno = idAlumno;
+		this.tipoDoc = tipoDoc;
+		this.documento = documento;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaNac = fechaNac;
+		this.direccion = direccion;
+		this.legajo = legajo;
+	}
+
+	public TipoDocumento getTipoDoc() {
+		return tipoDoc;
+	}
+
+	public void setTipoDoc(TipoDocumento tipoDoc) {
+		this.tipoDoc = tipoDoc;
+	}
+
+	public Long getDocumento() {
+		return documento;
+	}
+
+	public void setDocumento(Long documento) {
+		this.documento = documento;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public Date getFechaNac() {
+		return fechaNac;
+	}
+
+	public void setFechaNac(Date fechaNac) {
+		this.fechaNac = fechaNac;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public Integer getLegajo() {
+		return legajo;
+	}
+
+	public void setLegajo(Integer legajo) {
+		this.legajo = legajo;
+	}
+
+	public Integer getIdAlumno() {
+		return idAlumno;
+	}
+
+	public void setIdAlumno(Integer idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
+}

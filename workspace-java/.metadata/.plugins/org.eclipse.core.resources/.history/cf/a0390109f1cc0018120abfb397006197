@@ -1,0 +1,69 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "inscripciones_carrera")
+public class InscripcionesCarrera implements Serializable {
+	private static final long serialVersionUID = 14223829103620910L;
+
+	@ManyToOne
+    @JoinColumn(name="idalumno", nullable=false)
+	private Alumno idAlumno;
+	
+	@ManyToOne
+    @JoinColumn(name="idcarrera", nullable=false)
+	private Carrera idCarrera;
+	
+	@Column(name = "fechainscripcion", nullable=false)
+	private Date fechaInscripcion;
+
+	public InscripcionesCarrera() {
+		super();
+	}
+
+	public InscripcionesCarrera(Alumno idAlumno, Carrera idCarrera, Date fechaInscripcion) {
+		super();
+		this.idAlumno = idAlumno;
+		this.idCarrera = idCarrera;
+		this.fechaInscripcion = fechaInscripcion;
+	}
+
+	public Alumno getIdAlumno() {
+		return idAlumno;
+	}
+
+	public void setIdAlumno(Alumno idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
+	public Carrera getIdCarrera() {
+		return idCarrera;
+	}
+
+	public void setIdCarrera(Carrera idCarrera) {
+		this.idCarrera = idCarrera;
+	}
+
+	public Date getFechaInscripcion() {
+		return fechaInscripcion;
+	}
+
+	public void setFechaInscripcion(Date fechaInscripcion) {
+		this.fechaInscripcion = fechaInscripcion;
+	}
+
+	@Override
+	public String toString() {
+		return "InscripcionesCarrera [idAlumno=" + idAlumno + ", idCarrera=" + idCarrera + ", fechaInscripcion="
+				+ fechaInscripcion + "]";
+	}
+
+}

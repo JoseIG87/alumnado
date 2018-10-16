@@ -1,0 +1,9 @@
+package com.tecso.app.service;
+
+import com.tecso.app.model.Curso;
+
+public interface InscripcionesCursoService {
+	
+	InscripcionesCurso buscarInscripcionDeAlumnoACurso (Alumno al, Curso c);
+
+}

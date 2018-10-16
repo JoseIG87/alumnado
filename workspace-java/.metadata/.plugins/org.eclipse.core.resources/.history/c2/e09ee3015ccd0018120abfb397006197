@@ -1,0 +1,9 @@
+package com.tecso.app.service.impl;
+
+public class PersonaServiceImpl {
+
+	public PersonaServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

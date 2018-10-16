@@ -1,0 +1,87 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "docente")
+public class Docente implements Serializable {
+	private static final long serialVersionUID = 2907640964193275233L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "identificador", nullable=false)
+	private long id;
+ 
+	@ManyToOne
+    @JoinColumn(name="idpersona", nullable=false)
+	private Persona idPersona;
+ 
+	@Column(name = "legajo", nullable=false)
+	private Integer legajo;
+	
+	@OneToOne(mappedBy = "idDocente", cascade = CascadeType.ALL, 
+            fetch = FetchType.LAZY, optional = false)
+	private CursoDocente cursoDocente;
+
+	public Docente() {
+		super();
+	}
+
+	public Docente(long id, Persona idPersona, Integer legajo, CursoDocente cursoDocente) {
+		super();
+		this.id = id;
+		this.idPersona = idPersona;
+		this.legajo = legajo;
+		this.cursoDocente = cursoDocente;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	public CursoDocente getCursoDocente() {
+		return cursoDocente;
+	}
+	
+	public void setCursoDocente(CursoDocente cursoDocente) {
+		this.cursoDocente = cursoDocente;
+	}
+
+	public Persona getIdPersona() {
+		return idPersona;
+	}
+
+	public void setIdPersona(Persona idPersona) {
+		this.idPersona = idPersona;
+	}
+
+	public Integer getLegajo() {
+		return legajo;
+	}
+
+	public void setLegajo(Integer legajo) {
+		this.legajo = legajo;
+	}
+
+	@Override
+	public String toString() {
+		return "Docente [id=" + id + ", idPersona=" + idPersona + ", legajo=" + legajo + ", cursoDocente="
+				+ cursoDocente + "]";
+	}
+
+}

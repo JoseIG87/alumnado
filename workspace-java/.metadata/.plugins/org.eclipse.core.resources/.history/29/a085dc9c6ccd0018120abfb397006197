@@ -1,0 +1,21 @@
+package com.tecso.app.dto;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.tecso.app.model.InscripcionesCurso;
+
+public class CarreraCursosDTO implements Serializable{
+
+private String nombreCarrera;
+	
+	private List<InscripcionesCurso> cursosActivos;
+	
+	private List<InscripcionesCurso> cursosAprobados;
+	
+	private List<InscripcionesCurso> cursosDesaprobados;
+	
+	private BigDecimal promedioGeneralCarrera;
+
+}

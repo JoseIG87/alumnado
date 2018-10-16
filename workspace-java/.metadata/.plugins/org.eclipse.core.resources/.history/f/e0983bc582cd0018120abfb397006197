@@ -1,0 +1,5 @@
+package com.tecso.app.service;
+
+public interface CursoService {
+
+}

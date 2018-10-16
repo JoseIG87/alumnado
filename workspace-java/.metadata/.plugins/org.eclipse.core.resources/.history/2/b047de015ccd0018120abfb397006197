@@ -1,0 +1,132 @@
+package com.tecso.app.web;
+
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tecso.app.dto.AlumnoPersonaDTO;
+import com.tecso.app.model.Alumno;
+import com.tecso.app.model.Persona;
+import com.tecso.app.repository.AlumnoRepository;
+import com.tecso.app.repository.PersonaRepository;
+
+@RestController
+@RequestMapping("/alumno")
+public class AlumnoController {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(AlumnoController.class);
+	
+	@Autowired
+	AlumnoRepository alumnoRepo;
+	
+	@Autowired
+	PersonaRepository personaRepo;
+	
+	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
+	public ResponseEntity<Void> postCustomer(@RequestBody AlumnoPersonaDTO persona) {
+		
+		Persona personaGuardar = new Persona();
+		Alumno alumnoGuardar = new Alumno();
+		
+		personaGuardar.setTipoDoc(persona.getTipoDoc());
+		personaGuardar.setDocumento(persona.getDocumento());
+		personaGuardar.setNombre(persona.getNombre());
+		personaGuardar.setApellido(persona.getApellido());
+		personaGuardar.setFechaNac(persona.getFechaNac());
+		personaGuardar.setDireccion(persona.getDireccion());
+		personaRepo.save(personaGuardar);
+		
+		alumnoGuardar.setIdPersona(personaGuardar);
+		alumnoGuardar.setLegajo(persona.getLegajo());
+		alumnoRepo.save(alumnoGuardar);
+		
+		LOG.info("El alumno ha sido creado correctamente");
+		
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/modificar", method = RequestMethod.PUT)
+	public ResponseEntity<Void> postCustomer(@RequestParam Long id, @RequestBody AlumnoPersonaDTO alumno) {
+		
+		Optional<Persona> persona = personaRepo.findById(id);
+		
+		Persona personaGuardar = new Persona();
+		Alumno alumnoGuardar = new Alumno();
+		
+		if(persona == null) {
+			LOG.info("No se ha encontrado ninguna persona con el id: "+id);
+			
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+		personaGuardar = persona.get();
+		alumnoGuardar = alumnoRepo.findByPersona(personaGuardar.getId());
+		
+		if(alumnoGuardar == null) {
+			LOG.info("No se ha encontrado ningun alumno con idpersona: "+id);
+			
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+		personaGuardar.setTipoDoc(alumno.getTipoDoc());
+		personaGuardar.setDocumento(alumno.getDocumento());
+		personaGuardar.setNombre(alumno.getNombre());
+		personaGuardar.setApellido(alumno.getApellido());
+		personaGuardar.setFechaNac(alumno.getFechaNac());
+		personaGuardar.setDireccion(alumno.getDireccion());
+		personaRepo.save(personaGuardar);
+		
+		alumnoGuardar.setLegajo(alumno.getLegajo());
+		alumnoRepo.save(alumnoGuardar);
+		
+		LOG.info("El alumno ha sido modificado correctamente");
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(path="/borrar/{alumnoId}",method=RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteById(@PathVariable Long alumnoId) {
+	 try {
+	  userService.deleteById(userId);
+	  return ResponseEntity.noContent().build();
+	 } catch (ResourceNotFoundException e) {
+	  return ResponseEntity.notFound().build();
+	 }
+	}
+ 
+	@RequestMapping("/borrar")
+	public Response findAll() {
+ 
+		Iterable<Customer> customers = repository.findAll();
+ 
+		return new Response("Done", customers);
+	}
+ 
+	@RequestMapping("/customer/{id}")
+	public Response findCustomerById(@PathVariable("id") long id) {
+ 
+		Customer customer = repository.findOne(id);
+ 
+		return new Response("Done", customer);
+	}
+ 
+	@RequestMapping("/findbylastname")
+	public Response findByLastName(@RequestParam("lastName") String lastName) {
+ 
+		List<Customer> customers = repository.findByLastName(lastName);
+ 
+		return new Response("Done", customers);
+	}
+
+}
+

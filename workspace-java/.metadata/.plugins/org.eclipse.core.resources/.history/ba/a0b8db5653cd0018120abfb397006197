@@ -1,0 +1,11 @@
+package com.tecso.app.dto;
+
+import java.io.Serializable;
+
+public class AlumnoPersonaDTO implements Serializable {
+
+	public AlumnoPersonaDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

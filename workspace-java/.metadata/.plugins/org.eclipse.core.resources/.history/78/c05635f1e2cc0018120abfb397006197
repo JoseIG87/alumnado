@@ -1,0 +1,9 @@
+package com.tecso.app.model;
+
+public class Carrera {
+
+	public Carrera() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

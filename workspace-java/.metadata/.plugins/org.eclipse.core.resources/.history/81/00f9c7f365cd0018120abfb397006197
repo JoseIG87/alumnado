@@ -1,0 +1,12 @@
+package com.tecso.app.dto;
+
+import java.io.Serializable;
+import java.util.List;
+
+import com.tecso.app.model.InscripcionesCarrera;
+
+public class EstadoAcademicoAlumnoDTO implements Serializable {
+
+	private List<InscripcionesCarrera> inscripcionesCarreras;
+
+}

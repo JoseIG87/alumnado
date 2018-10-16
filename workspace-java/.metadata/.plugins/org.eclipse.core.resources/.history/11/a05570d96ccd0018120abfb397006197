@@ -1,0 +1,68 @@
+package com.tecso.app.dto;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.tecso.app.model.InscripcionesCarrera;
+import com.tecso.app.model.InscripcionesCurso;
+
+public class EstadoAcademicoAlumnoDTO implements Serializable {
+	private static final long serialVersionUID = -4490691226854699936L;
+	
+	private String nombreApellidoAlumno;
+	
+	private Long dni;
+	
+	private Integer legajo;
+	
+	private List<CarreraCursosDTO> carrerasYCursos;
+
+	public EstadoAcademicoAlumnoDTO() {
+		super();
+		this.carrerasYCursos = new ArrayList<CarreraCursosDTO>();
+	}
+
+	public EstadoAcademicoAlumnoDTO(String nombreApellidoAlumno, Long dni, Integer legajo,
+			List<CarreraCursosDTO> carrerasYCursos) {
+		super();
+		this.nombreApellidoAlumno = nombreApellidoAlumno;
+		this.dni = dni;
+		this.legajo = legajo;
+		this.carrerasYCursos = carrerasYCursos;
+	}
+	
+	public String getNombreApellidoAlumno() {
+		return nombreApellidoAlumno;
+	}
+
+	public void setNombreApellidoAlumno(String nombreApellidoAlumno) {
+		this.nombreApellidoAlumno = nombreApellidoAlumno;
+	}
+
+	public Long getDni() {
+		return dni;
+	}
+
+	public void setDni(Long dni) {
+		this.dni = dni;
+	}
+
+	public Integer getLegajo() {
+		return legajo;
+	}
+
+	public void setLegajo(Integer legajo) {
+		this.legajo = legajo;
+	}
+
+	public List<CarreraCursosDTO> getCarrerasYCursos() {
+		return carrerasYCursos;
+	}
+
+	public void setCarrerasYCursos(List<CarreraCursosDTO> carrerasYCursos) {
+		this.carrerasYCursos = carrerasYCursos;
+	}
+	
+}

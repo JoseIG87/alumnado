@@ -1,0 +1,30 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "alumno")
+public class Alumno implements Serializable {
+	private static final long serialVersionUID = 746651389513819565L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long identificador;
+ 
+	@ManyToOne
+    @JoinColumn(name="idpersona", nullable=false)
+	private Persona idPersona;
+ 
+	@Column(name = "legajo")
+	private Integer legajo;
+
+}

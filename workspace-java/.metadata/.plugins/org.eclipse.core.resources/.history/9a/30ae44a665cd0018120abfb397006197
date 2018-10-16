@@ -1,0 +1,7 @@
+package com.tecso.app.dto;
+
+public class EstadoAcademicoAlumnoDTO {
+
+	private List<InscripcionesCarrera> inscripcionesCarrera
+
+}

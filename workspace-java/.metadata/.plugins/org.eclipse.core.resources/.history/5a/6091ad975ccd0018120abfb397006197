@@ -1,0 +1,32 @@
+package com.tecso.app.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.tecso.app.model.Alumno;
+import com.tecso.app.model.Persona;
+import com.tecso.app.repository.AlumnoRepository;
+import com.tecso.app.repository.PersonaRepository;
+import com.tecso.app.service.AlumnoService;
+
+@Service
+public class AlumnoServiceImpl implements AlumnoService {
+
+	@Autowired
+	AlumnoRepository alumnoRepo;
+
+	@Override
+	public Persona obtenerPersonaPorId(Long idPersona) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Alumno obtenerAlumnoPorIdPersona(Long idPersona) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}

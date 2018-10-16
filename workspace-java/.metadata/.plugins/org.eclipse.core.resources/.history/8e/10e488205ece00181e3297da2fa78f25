@@ -1,0 +1,61 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "curso_docente")
+@IdClass(CursoDocentePK.class)
+public class CursoDocente implements Serializable {
+	private static final long serialVersionUID = -1842735561860454309L;
+	
+	@Id
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumns({@JoinColumn(name="idcurso", referencedColumnName="identificador")})
+	private Curso idCurso;
+	
+	@Id
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumns({@JoinColumn(name="iddocente", referencedColumnName="identificador")})
+	private Docente idDocente;
+
+	public CursoDocente() {
+		super();
+	}
+
+	public CursoDocente(Curso idCurso, Docente idDocente) {
+		super();
+		this.idCurso = idCurso;
+		this.idDocente = idDocente;
+	}
+
+	public Curso getIdCurso() {
+		return idCurso;
+	}
+
+	public void setIdCurso(Curso idCurso) {
+		this.idCurso = idCurso;
+	}
+
+	public Docente getIdDocente() {
+		return idDocente;
+	}
+
+	public void setIdDocente(Docente idDocente) {
+		this.idDocente = idDocente;
+	}
+
+	@Override
+	public String toString() {
+		return "CursoDocente [idCurso=" + idCurso + ", idDocente=" + idDocente + "]";
+	}
+
+}

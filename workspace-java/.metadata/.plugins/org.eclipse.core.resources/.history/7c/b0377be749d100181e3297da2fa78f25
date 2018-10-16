@@ -1,0 +1,9 @@
+package com.tecso.app.config;
+
+public class JacksonConfiguration {
+
+	public JacksonConfiguration() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

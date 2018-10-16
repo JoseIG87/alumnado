@@ -1,0 +1,9 @@
+package com.tecso.app.model;
+
+public class InscripcionesCursoPK {
+
+	public InscripcionesCursoPK() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

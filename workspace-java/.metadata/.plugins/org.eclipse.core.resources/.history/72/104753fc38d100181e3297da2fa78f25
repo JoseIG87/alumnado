@@ -1,0 +1,51 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+public class CursoDocentePK implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	private Long idCurso;
+	
+	private Long idDocente;
+
+	public Long getIdCurso() {
+		return idCurso;
+	}
+
+	public void setIdCurso(Long idCurso) {
+		this.idCurso = idCurso;
+	}
+
+	public Long getIdDocente() {
+		return idDocente;
+	}
+
+	public void setIdDocente(Long idDocente) {
+		this.idDocente = idDocente;
+	}
+
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof CursoDocentePK)) {
+			return false;
+		}
+		CursoDocentePK castOther = (CursoDocentePK)other;
+		return 
+			(this.idCurso == castOther.idCurso)
+			&& (this.idDocente.equals(castOther.idDocente));
+	}
+	
+	public int hashCode() {
+		final int prime = 31;
+		int hash = 17;
+		hash = (int) (hash * prime + this.idCurso);
+		hash = (int) (hash * prime + this.idDocente);
+		
+		return hash;
+	}
+
+}

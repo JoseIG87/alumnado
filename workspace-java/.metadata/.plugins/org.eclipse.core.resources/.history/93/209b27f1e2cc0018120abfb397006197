@@ -1,0 +1,9 @@
+package com.tecso.app.model;
+
+public class InscripcionesCarrera {
+
+	public InscripcionesCarrera() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

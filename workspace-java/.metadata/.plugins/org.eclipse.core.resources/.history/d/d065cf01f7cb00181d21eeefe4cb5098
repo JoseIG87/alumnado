@@ -1,0 +1,15 @@
+package ejercicios;
+
+public class Persona {
+	
+	TipoDocumento - enum (dni/libretacivica) 
+	 * NroDocumento - Integer
+	 * Nombre - String
+	 * Apellido - String
+	 * FechaNacimiento - Date
+
+	public Persona() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

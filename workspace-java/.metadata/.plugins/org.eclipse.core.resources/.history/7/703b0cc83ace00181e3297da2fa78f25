@@ -1,0 +1,9 @@
+package com.tecso.app.service.impl;
+
+public class InscripcionesCursoServiceImpl {
+
+	public InscripcionesCursoServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

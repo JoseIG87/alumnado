@@ -1,0 +1,13 @@
+package com.tecso.app.service;
+
+import com.tecso.app.model.Persona;
+
+public interface PersonaService {
+	
+	Persona obtenerPersonaPorId (Long idPersona);
+	
+	Persona obtenerPersonaPorDni (Integer documento);
+	
+	void guardarOActualizar (Persona persona);
+
+}

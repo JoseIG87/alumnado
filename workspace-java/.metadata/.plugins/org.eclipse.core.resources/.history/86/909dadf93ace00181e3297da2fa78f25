@@ -1,0 +1,19 @@
+package com.tecso.app.service.impl;
+
+import com.tecso.app.model.Alumno;
+import com.tecso.app.model.Curso;
+import com.tecso.app.model.InscripcionesCurso;
+import com.tecso.app.service.InscripcionesCursoService;
+
+@Service
+public class InscripcionesCursoServiceImpl implements InscripcionesCursoService{
+
+	@Override
+	public InscripcionesCurso buscarInscripcionDeAlumnoACurso(Alumno al, Curso c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+}

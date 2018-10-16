@@ -1,0 +1,16 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "curso")
+public class Curso implements Serializable {
+
+	public Curso() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,130 @@
+package ejercicios;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * A. Crear una clase Persona con los siguientes campos
+ * (con sus respectivos getters, setters y constructor)
+ * 
+ * TipoDocumento - enum (dni/libretacivica) 
+ * NroDocumento - Integer
+ * Nombre - String
+ * Apellido - String
+ * FechaNacimiento - Date
+ * 
+ * B. En el método main de la clase "Ejercicio2" crear una nueva instancia
+ * de la clase persona y settearle valores reales con tus datos
+ * 
+ * 
+ * C. En el método main de la clase "Ejercicio 2" imprimir los valores en 
+ * consola 
+ * (crear método main e imprimir valores) 
+ *  
+ * @author examen
+ *
+ */
+public class Ejercicio2 {
+
+	/**
+	 * 
+	 */
+	public Ejercicio2() {
+		
+		class Persona {
+			
+			private TipoDocumento tipoDocumento;
+			private Integer nroDocumento;
+			private String nombre;
+			private String apellido;
+			private Date fechaNacimineto;
+
+			public Persona() {
+				
+			}
+
+			public Persona(TipoDocumento tipoDocumento, Integer nroDocumento, String nombre, String apellido,
+					Date fechaNacimineto) {
+				super();
+				this.tipoDocumento = tipoDocumento;
+				this.nroDocumento = nroDocumento;
+				this.nombre = nombre;
+				this.apellido = apellido;
+				this.fechaNacimineto = fechaNacimineto;
+			}
+
+			public TipoDocumento getTipoDocumento() {
+				return tipoDocumento;
+			}
+
+			public void setTipoDocumento(TipoDocumento tipoDocumento) {
+				this.tipoDocumento = tipoDocumento;
+			}
+
+			public Integer getNroDocumento() {
+				return nroDocumento;
+			}
+
+			public void setNroDocumento(Integer nroDocumento) {
+				this.nroDocumento = nroDocumento;
+			}
+
+			public String getNombre() {
+				return nombre;
+			}
+
+			public void setNombre(String nombre) {
+				this.nombre = nombre;
+			}
+
+			public String getApellido() {
+				return apellido;
+			}
+
+			public void setApellido(String apellido) {
+				this.apellido = apellido;
+			}
+
+			public Date getFechaNacimineto() {
+				return fechaNacimineto;
+			}
+
+			public void setFechaNacimineto(Date fechaNacimineto) {
+				this.fechaNacimineto = fechaNacimineto;
+			}
+
+		}
+	}
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		SimpleDateFormat formato = new SimpleDateFormat("dd-M-yyyy");
+		String fechaNacInString = "04-11-1989";
+		Date fechaNac = new Date();
+		try {
+			fechaNac = formato.parse(fechaNacInString);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		Persona miPersona = new Persona();
+		miPersona.setTipoDocumento(TipoDocumento.DNI);
+		miPersona.setNroDocumento(34714285);
+		miPersona.setNombre("Jose Ignacio");
+		miPersona.setApellido("Prieto");
+		miPersona.setFechaNacimineto(fechaNac);
+		
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		
+		System.out.println("Tipo Documento: "+miPersona.getTipoDocumento()+"\n"+"Nro. Documento: "+
+				miPersona.getNroDocumento()+"\n"+"Nombre/s y Apellio/s: "+miPersona.getNombre()+" "+miPersona.getApellido()+"\n"+
+				"Fecha De Nacimiento: "+simpleDateFormat.format(miPersona.getFechaNacimineto()));
+
+	}
+
+}

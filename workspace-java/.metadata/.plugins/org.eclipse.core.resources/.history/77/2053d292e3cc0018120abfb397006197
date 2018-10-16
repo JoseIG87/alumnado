@@ -1,0 +1,73 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "alumno")
+public class Alumno implements Serializable {
+	private static final long serialVersionUID = 746651389513819565L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "identificador", nullable=false)
+	private long id;
+ 
+	@ManyToOne
+    @JoinColumn(name="idpersona", nullable=false)
+	private Persona idPersona;
+ 
+	@Column(name = "legajo", nullable=false)
+	private Integer legajo;
+
+	public Alumno() {
+		super();
+	}
+
+	public Alumno(long id, Persona idPersona, Integer legajo) {
+		super();
+		this.id = id;
+		this.idPersona = idPersona;
+		this.legajo = legajo;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Persona getIdPersona() {
+		return idPersona;
+	}
+
+	public void setIdPersona(Persona idPersona) {
+		this.idPersona = idPersona;
+	}
+
+	public Integer getLegajo() {
+		return legajo;
+	}
+
+	public void setLegajo(Integer legajo) {
+		this.legajo = legajo;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Alumno[id=%d, idPersona='%s', legajo='%s']", id, idPersona, legajo);
+	}
+	
+	
+
+}

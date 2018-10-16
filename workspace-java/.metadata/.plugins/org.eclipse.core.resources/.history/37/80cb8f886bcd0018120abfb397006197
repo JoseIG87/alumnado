@@ -1,0 +1,99 @@
+package com.tecso.app.dto;
+
+import java.io.Serializable;
+import java.util.List;
+
+import com.tecso.app.model.InscripcionesCarrera;
+import com.tecso.app.model.InscripcionesCurso;
+
+public class EstadoAcademicoAlumnoDTO implements Serializable {
+	private static final long serialVersionUID = -4490691226854699936L;
+	
+	private String nombreApellidoAlumno;
+	
+	private Long dni;
+	
+	private Integer legajo;
+	
+	private List<InscripcionesCarrera> carrerasInscriptas;
+	
+	private List<InscripcionesCurso> cursosActivos;
+	
+	private List<InscripcionesCurso> cursosAprobados;
+	
+	private List<InscripcionesCurso> cursosDesaprobados;
+
+	public EstadoAcademicoAlumnoDTO() {
+		super();
+	}
+
+	public EstadoAcademicoAlumnoDTO(String nombreApellidoAlumno, Long dni, Integer legajo,
+			List<InscripcionesCarrera> carrerasInscriptas, List<InscripcionesCurso> cursosActivos,
+			List<InscripcionesCurso> cursosAprobados, List<InscripcionesCurso> cursosDesaprobados) {
+		super();
+		this.nombreApellidoAlumno = nombreApellidoAlumno;
+		this.dni = dni;
+		this.legajo = legajo;
+		this.carrerasInscriptas = carrerasInscriptas;
+		this.cursosActivos = cursosActivos;
+		this.cursosAprobados = cursosAprobados;
+		this.cursosDesaprobados = cursosDesaprobados;
+	}
+
+	public String getNombreApellidoAlumno() {
+		return nombreApellidoAlumno;
+	}
+
+	public void setNombreApellidoAlumno(String nombreApellidoAlumno) {
+		this.nombreApellidoAlumno = nombreApellidoAlumno;
+	}
+
+	public Long getDni() {
+		return dni;
+	}
+
+	public void setDni(Long dni) {
+		this.dni = dni;
+	}
+
+	public Integer getLegajo() {
+		return legajo;
+	}
+
+	public void setLegajo(Integer legajo) {
+		this.legajo = legajo;
+	}
+
+	public List<InscripcionesCarrera> getCarrerasInscriptas() {
+		return carrerasInscriptas;
+	}
+
+	public void setCarrerasInscriptas(List<InscripcionesCarrera> carrerasInscriptas) {
+		this.carrerasInscriptas = carrerasInscriptas;
+	}
+
+	public List<InscripcionesCurso> getCursosActivos() {
+		return cursosActivos;
+	}
+
+	public void setCursosActivos(List<InscripcionesCurso> cursosActivos) {
+		this.cursosActivos = cursosActivos;
+	}
+
+	public List<InscripcionesCurso> getCursosAprobados() {
+		return cursosAprobados;
+	}
+
+	public void setCursosAprobados(List<InscripcionesCurso> cursosAprobados) {
+		this.cursosAprobados = cursosAprobados;
+	}
+
+	public List<InscripcionesCurso> getCursosDesaprobados() {
+		return cursosDesaprobados;
+	}
+
+	public void setCursosDesaprobados(List<InscripcionesCurso> cursosDesaprobados) {
+		this.cursosDesaprobados = cursosDesaprobados;
+	}
+	
+}

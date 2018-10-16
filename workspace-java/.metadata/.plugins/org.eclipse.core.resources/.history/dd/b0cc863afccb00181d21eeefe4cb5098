@@ -1,0 +1,21 @@
+package ejercicios;
+
+public class Alumno {
+	
+	private Persona persona;
+	
+	private Integer legajo;
+
+	public Alumno() {
+		
+	}
+
+	public Alumno(Persona persona, Integer legajo) {
+		super();
+		this.persona = persona;
+		this.legajo = legajo;
+	}
+	
+	
+
+}

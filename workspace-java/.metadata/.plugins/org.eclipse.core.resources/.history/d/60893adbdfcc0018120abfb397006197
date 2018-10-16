@@ -1,0 +1,9 @@
+package com.tecso.app.web;
+
+public class AlumnoController {
+
+	public AlumnoController() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

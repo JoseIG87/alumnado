@@ -1,0 +1,40 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "curso_docente")
+public class CursoDocente implements Serializable {
+	
+	private static final long serialVersionUID = -1842735561860454309L;
+	
+	@EmbeddedId
+    private CursoDocentePK id;
+
+	public CursoDocente() {
+		super();
+	}
+
+	public CursoDocente(CursoDocentePK id) {
+		super();
+		this.id = id;
+	}
+
+	public CursoDocentePK getId() {
+		return id;
+	}
+
+	public void setId(CursoDocentePK id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "CursoDocente [id=" + id + "]";
+	}
+
+}

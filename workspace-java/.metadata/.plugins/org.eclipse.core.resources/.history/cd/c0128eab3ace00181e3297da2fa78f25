@@ -1,0 +1,5 @@
+package com.tecso.app.repository;
+
+public interface InscripcionesCursoRepository {
+
+}

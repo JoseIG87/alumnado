@@ -1,0 +1,16 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "inscripciones_carrera")
+public class InscripcionesCarrera implements Serializable {
+
+	public InscripcionesCarrera() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

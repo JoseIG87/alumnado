@@ -1,0 +1,55 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+
+public class InscripcionesCarreraPK implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	@Column(name = "iddocente")
+	private Long idAlumno;
+	
+	@Column(name = "iddocente")
+	private Long idCarrera;
+
+	public Long getIdAlumno() {
+		return idAlumno;
+	}
+
+	public void setIdAlumno(Long idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
+	public Long getIdCarrera() {
+		return idCarrera;
+	}
+
+	public void setIdCarrera(Long idCarrera) {
+		this.idCarrera = idCarrera;
+	}
+
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof InscripcionesCarreraPK)) {
+			return false;
+		}
+		InscripcionesCarreraPK castOther = (InscripcionesCarreraPK)other;
+		return 
+			(this.idAlumno == castOther.idAlumno)
+			&& (this.idCarrera.equals(castOther.idCarrera));
+	}
+	
+	public int hashCode() {
+		final int prime = 31;
+		int hash = 17;
+		hash = (int) (hash * prime + this.idAlumno);
+		hash = (int) (hash * prime + this.idCarrera);
+		
+		return hash;
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.tecso.app.repository;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.tecso.app.model.Persona;
+
+public interface PersonaRepository extends CrudRepository<Persona, Long> {
+	
+	@Query("select p from persona p where p.documento=:documento")
+	Persona findByDni(Integer documento);
+	
+}

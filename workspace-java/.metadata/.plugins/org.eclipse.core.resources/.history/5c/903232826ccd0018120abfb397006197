@@ -1,0 +1,9 @@
+package com.tecso.app.dto;
+
+public class CarreraCursosDTO {
+
+	public CarreraCursosDTO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

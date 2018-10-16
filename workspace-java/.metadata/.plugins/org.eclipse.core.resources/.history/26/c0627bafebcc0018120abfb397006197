@@ -1,0 +1,9 @@
+package com.tecso.app.model;
+
+public class Persona implements Serializable {
+
+	public Persona() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

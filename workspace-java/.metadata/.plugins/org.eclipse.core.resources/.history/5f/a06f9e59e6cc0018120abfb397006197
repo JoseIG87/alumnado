@@ -1,0 +1,11 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+
+public class CursoDocente implements Serializable {
+
+	public CursoDocente() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

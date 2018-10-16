@@ -1,0 +1,81 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Table(name = "inscripciones_carrera")
+public class InscripcionesCarrera implements Serializable {
+	private static final long serialVersionUID = 14223829103620910L;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idalumno", nullable=false)
+	private Alumno idAlumno;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idcarrera", nullable=false)
+	private Carrera idCarrera;
+	
+	@Column(name = "fechainscripcion", nullable=false)
+	private Date fechaInscripcion;
+	
+	@Column(name = "fechafinalizacion", nullable=true)
+	private Date fechaFinalizacion;
+
+	public InscripcionesCarrera() {
+		super();
+	}
+	
+	public InscripcionesCarrera(Alumno idAlumno, Carrera idCarrera, Date fechaInscripcion, Date fechaFinalizacion) {
+		super();
+		this.idAlumno = idAlumno;
+		this.idCarrera = idCarrera;
+		this.fechaInscripcion = fechaInscripcion;
+		this.fechaFinalizacion = fechaFinalizacion;
+	}
+	
+	public Alumno getIdAlumno() {
+		return idAlumno;
+	}
+
+	public void setIdAlumno(Alumno idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
+	public Carrera getIdCarrera() {
+		return idCarrera;
+	}
+
+	public void setIdCarrera(Carrera idCarrera) {
+		this.idCarrera = idCarrera;
+	}
+
+	public Date getFechaInscripcion() {
+		return fechaInscripcion;
+	}
+
+	public void setFechaInscripcion(Date fechaInscripcion) {
+		this.fechaInscripcion = fechaInscripcion;
+	}
+
+	public Date getFechaFinalizacion() {
+		return fechaFinalizacion;
+	}
+
+	public void setFechaFinalizacion(Date fechaFinalizacion) {
+		this.fechaFinalizacion = fechaFinalizacion;
+	}
+
+	@Override
+	public String toString() {
+		return "InscripcionesCarrera [idAlumno=" + idAlumno + ", idCarrera=" + idCarrera + ", fechaInscripcion="
+				+ fechaInscripcion + ", fechaFinalizacion=" + fechaFinalizacion + "]";
+	}
+
+}

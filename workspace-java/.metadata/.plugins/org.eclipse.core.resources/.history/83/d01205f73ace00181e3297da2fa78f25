@@ -1,0 +1,9 @@
+package com.tecso.app.service.impl;
+
+import com.tecso.app.service.InscripcionesCursoService;
+
+public class InscripcionesCursoServiceImpl implements InscripcionesCursoService{
+
+	
+
+}

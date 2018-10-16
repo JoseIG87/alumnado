@@ -1,0 +1,37 @@
+package com.tecso.app.web;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tecso.app.model.Curso;
+import com.tecso.app.service.CursoService;
+
+@RestController
+@RequestMapping("/cursos")
+public class CursoController {
+
+private static final Logger LOG = LoggerFactory.getLogger(AlumnoController.class);
+	
+	@Autowired
+	CursoService servicioCurso;
+	
+	@RequestMapping(path="/obtenercursos",method=RequestMethod.GET)
+	public ResponseEntity<List<Curso>> findAll() {
+		
+		List<Curso> cursos = servicioCurso.buscarTodosLosCursos();
+		if(cursos.isEmpty()) {
+			LOG.info("No se encontro cursos");
+			return ResponseEntity.notFound().build();
+		}
+		return new ResponseEntity<List<Curso>>(cursos, HttpStatus.OK);
+	}
+
+}

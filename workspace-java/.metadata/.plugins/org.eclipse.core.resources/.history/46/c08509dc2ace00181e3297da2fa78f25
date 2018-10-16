@@ -1,0 +1,191 @@
+var app = angular.module('app', []);
+
+app.controller('postController', function($scope, $http, $location) {
+	$scope.submitAlumno = function(){
+		var url = $location.absUrl() + "/alumnos/guardar";
+		
+		var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+        }
+		
+		var data = {
+			tipoDoc: $scope.tipoDoc,
+			documento: $scope.documento,
+			nombre: $scope.nombre,
+			apellido: $scope.apellido,
+			fechaNac: $scope.fechaNac,
+			direccion: $scope.direccion,
+			legajo: $scope.legajo
+        };
+		
+		
+		$http.post(url, data, config).then(function (response) {
+			$scope.enableDelete = false;
+			$scope.postResultMessage = "Alumno Guardado Correctamente!";
+		}, function (response) {
+			$scope.postResultMessage = "Hubo un error al intentar guardar el alumno";
+		});
+		
+		$scope.tipoDoc = "";
+		$scope.documento = "";
+		$scope.nombre = "";
+		$scope.apellido = "";
+		$scope.fechaNac = "";
+		$scope.direccion = "";
+		$scope.legajo = "";
+	}
+	
+	$scope.getAlumno = function(){
+		var url = $location.absUrl() + "/obteneralumno/"+$scope.documentoBuscar;
+		
+		var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+        }
+		
+		$http.get(url, config).then(function (response) {
+			console.log(response);
+			$scope.tipoDoc = response.data.tipoDoc;
+			$scope.documento = response.data.documento;
+			$scope.nombre = response.data.nombre;
+			$scope.apellido = response.data.apellido;
+			$scope.fechaNac = response.data.fechaNac;
+			$scope.direccion = response.data.direccion;
+			$scope.legajo = response.data.legajo;
+			$scope.enableDelete = true;
+		}, function (response) {
+			$scope.tipoDoc = "";
+			$scope.documento = "";
+			$scope.nombre = "";
+			$scope.apellido = "";
+			$scope.fechaNac = "";
+			$scope.direccion = "";
+			$scope.legajo = "";
+			$scope.getAlumnoResultMessage = "No se encontro ningun alumno con ese documento";
+		});
+	}
+	
+	$scope.deleteAlumno = function(){
+		var url = $location.absUrl() + "/obteneralumno/"+$scope.documentoBuscar;
+		
+		var config = {
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8;'
+                }
+        }
+		
+		$http.get(url, config).then(function (response) {
+			console.log(response);
+			$scope.tipoDoc = response.data.tipoDoc;
+			$scope.documento = response.data.documento;
+			$scope.nombre = response.data.nombre;
+			$scope.apellido = response.data.apellido;
+			$scope.fechaNac = response.data.fechaNac;
+			$scope.direccion = response.data.direccion;
+			$scope.legajo = response.data.legajo;
+			$scope.enableDelete = true;
+		}, function (response) {
+			$scope.tipoDoc = "";
+			$scope.documento = "";
+			$scope.nombre = "";
+			$scope.apellido = "";
+			$scope.fechaNac = "";
+			$scope.direccion = "";
+			$scope.legajo = "";
+			$scope.getAlumnoResultMessage = "No se encontro alumno con ese documento";
+		});
+	}
+});
+ 
+app.controller('getallcustomersController', function($scope, $http, $location) {
+	
+	$scope.showAllCustomers = false;
+ 
+	$scope.getAllCustomers = function() {
+		var url = $location.absUrl() + "findall";
+ 
+		var config = {
+			headers : {
+				'Content-Type' : 'application/json;charset=utf-8;'
+			}
+		}
+ 
+		$http.get(url, config).then(function(response) {
+ 
+			if (response.data.status == "Done") {
+				$scope.allcustomers = response.data;
+				$scope.showAllCustomers = true;
+ 
+			} else {
+				$scope.getResultMessage = "get All Customers Data Error!";
+			}
+ 
+		}, function(response) {
+			$scope.getResultMessage = "Fail!";
+		});
+ 
+	}
+});
+ 
+app.controller('getcustomerController', function($scope, $http, $location) {
+	
+	$scope.showCustomer = false;
+	
+	$scope.getCustomer = function() {
+		var url = $location.absUrl() + "customer/" + $scope.customerId;
+ 
+		var config = {
+			headers : {
+				'Content-Type' : 'application/json;charset=utf-8;'
+			}
+		}
+ 
+		$http.get(url, config).then(function(response) {
+ 
+			if (response.data.status == "Done") {
+				$scope.customer = response.data;
+				$scope.showCustomer = true;
+ 
+			} else {
+				$scope.getResultMessage = "Customer Data Error!";
+			}
+ 
+		}, function(response) {
+			$scope.getResultMessage = "Fail!";
+		});
+ 
+	}
+});
+ 
+app.controller('getcustomersbylastnameController', function($scope, $http, $location) {
+	
+	$scope.showCustomersByLastName = false;
+	
+	$scope.getCustomersByLastName = function() {
+		var url = $location.absUrl() + "findbylastname";
+ 
+		var config = {
+			headers : {	'Content-Type' : 'application/json;charset=utf-8;' },
+		
+			params: { 'lastName' : $scope.customerLastName }
+		}
+ 
+		$http.get(url, config).then(function(response) {
+ 
+			if (response.data.status == "Done") {
+				$scope.allcustomersbylastname = response.data;
+				$scope.showCustomersByLastName = true;
+ 
+			} else {
+				$scope.getResultMessage = "Customer Data Error!";
+			}
+ 
+		}, function(response) {
+			$scope.getResultMessage = "Fail!";
+		});
+ 
+	}
+});

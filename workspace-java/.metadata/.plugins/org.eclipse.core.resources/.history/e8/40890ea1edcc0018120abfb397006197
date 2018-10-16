@@ -1,0 +1,94 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "carrera")
+public class Carrera implements Serializable {
+	private static final long serialVersionUID = -1674078551966975613L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "identificador", nullable=false)
+	private long id;
+ 
+	@Column(name = "nombre", nullable=false)
+	private String nombre;
+ 
+	@Column(name = "descripcion", nullable=true)
+	private String descripcion;
+	
+	@Column(name = "fechadesde", nullable=false)
+	private Date fechaDesde;
+	
+	@Column(name = "fechahasta", nullable=true)
+	private Date fechaHasta;
+
+	public Carrera() {
+		super();
+	}
+
+	public Carrera(long id, String nombre, String descripcion, Date fechaDesde, Date fechaHasta) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fechaDesde = fechaDesde;
+		this.fechaHasta = fechaHasta;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getDescripion() {
+		return descripcion;
+	}
+
+	public void setDescripion(String descripion) {
+		this.descripcion = descripion;
+	}
+
+	public Date getFechaDesde() {
+		return fechaDesde;
+	}
+
+	public void setFechaDesde(Date fechaDesde) {
+		this.fechaDesde = fechaDesde;
+	}
+
+	public Date getFechaHasta() {
+		return fechaHasta;
+	}
+
+	public void setFechaHasta(Date fechaHasta) {
+		this.fechaHasta = fechaHasta;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Carrera[id=%d, nombre='%s', descripcion='%s', fechaDesde='%s', "
+				+ "fechaHasta='%s']", id, nombre, descripcion, fechaDesde, fechaHasta);
+	}
+
+}

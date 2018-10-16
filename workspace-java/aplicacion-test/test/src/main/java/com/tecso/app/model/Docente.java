@@ -1,0 +1,88 @@
+package com.tecso.app.model;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity(name = "docente")
+@Table(name = "docente")
+public class Docente implements Serializable {
+	private static final long serialVersionUID = 2907640964193275233L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "identificador", nullable=false)
+	private long id;
+ 
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idpersona", referencedColumnName="identificador", nullable=false)
+	private Persona idPersonaDocente;
+ 
+	@Column(name = "legajo", nullable=false)
+	private Integer legajo;
+	
+	@OneToMany(mappedBy="idDocente")
+	private List<Curso> cursos;
+
+	public Docente() {
+		super();
+		this.cursos = new ArrayList<Curso>();
+	}
+
+	public Docente(long id, Persona idPersona, Integer legajo, List<Curso> cursos) {
+		super();
+		this.id = id;
+		this.idPersonaDocente = idPersona;
+		this.legajo = legajo;
+		this.cursos = cursos;
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Persona getIdPersonaDocente() {
+		return idPersonaDocente;
+	}
+
+	public void setIdPersonaDocente(Persona idPersonaDocente) {
+		this.idPersonaDocente = idPersonaDocente;
+	}
+
+	public Integer getLegajo() {
+		return legajo;
+	}
+
+	public void setLegajo(Integer legajo) {
+		this.legajo = legajo;
+	}
+
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
+	@Override
+	public String toString() {
+		return "Docente [id=" + id + ", idPersona=" + idPersonaDocente + ", legajo=" + legajo + ", cursos=" + cursos + "]";
+	}
+
+}

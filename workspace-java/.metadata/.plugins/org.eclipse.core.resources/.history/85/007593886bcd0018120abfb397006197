@@ -1,0 +1,140 @@
+package com.tecso.app.web;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tecso.app.dto.AlumnoPersonaDTO;
+import com.tecso.app.dto.EstadoAcademicoAlumnoDTO;
+import com.tecso.app.model.Alumno;
+import com.tecso.app.model.InscripcionesCarrera;
+import com.tecso.app.model.InscripcionesCurso;
+import com.tecso.app.model.Persona;
+import com.tecso.app.service.AlumnoService;
+import com.tecso.app.service.PersonaService;
+
+@RestController
+@RequestMapping("/alumno")
+public class AlumnoController {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(AlumnoController.class);
+	
+	@Autowired
+	AlumnoService servicioAlumno;
+	
+	@Autowired
+	PersonaService servicioPersona;
+	
+	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
+	public ResponseEntity<Void> guardarAlumnoPersona(@RequestBody AlumnoPersonaDTO persona) {
+		
+		Persona personaGuardar = new Persona();
+		Alumno alumnoGuardar = new Alumno();
+		
+		personaGuardar.setTipoDoc(persona.getTipoDoc());
+		personaGuardar.setDocumento(persona.getDocumento());
+		personaGuardar.setNombre(persona.getNombre());
+		personaGuardar.setApellido(persona.getApellido());
+		personaGuardar.setFechaNac(persona.getFechaNac());
+		personaGuardar.setDireccion(persona.getDireccion());
+		servicioPersona.guardarOActualizar(personaGuardar);
+		
+		alumnoGuardar.setIdPersona(personaGuardar);
+		alumnoGuardar.setLegajo(persona.getLegajo());
+		servicioAlumno.guardarOActualizar(alumnoGuardar);
+		
+		LOG.info("El alumno ha sido creado correctamente");
+		
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(path="/modificar/{id}",method=RequestMethod.PUT)
+	public ResponseEntity<Void> editarAlumnoPersona(@PathVariable Long id, @RequestBody AlumnoPersonaDTO alumno) {
+		
+		Persona personaGuardar = servicioPersona.obtenerPersonaPorId(id);
+		
+		if(personaGuardar == null) {
+			LOG.info("No se ha encontrado ninguna persona con el id: "+id);
+			
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+		Alumno alumnoGuardar = servicioAlumno.obtenerAlumnoPorIdPersona(personaGuardar.getId());
+		
+		if(alumnoGuardar == null) {
+			LOG.info("No se ha encontrado ningun alumno con idpersona: "+id);
+			
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+		}
+		
+		personaGuardar.setTipoDoc(alumno.getTipoDoc());
+		personaGuardar.setDocumento(alumno.getDocumento());
+		personaGuardar.setNombre(alumno.getNombre());
+		personaGuardar.setApellido(alumno.getApellido());
+		personaGuardar.setFechaNac(alumno.getFechaNac());
+		personaGuardar.setDireccion(alumno.getDireccion());
+		servicioPersona.guardarOActualizar(personaGuardar);
+		
+		alumnoGuardar.setLegajo(alumno.getLegajo());
+		servicioAlumno.guardarOActualizar(alumnoGuardar);
+		
+		LOG.info("El alumno ha sido modificado correctamente");
+		
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(path="/borrar/{alumnoId}",method=RequestMethod.DELETE)
+	public ResponseEntity<Void> eliminarAlumno(@PathVariable Long alumnoId) throws NotFoundException {
+		servicioAlumno.eliminarAlumno(alumnoId);
+		
+		LOG.info("El alumno ha sido eliminado correctamente");
+		
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(path="/datosacademicos/{alumnoId}",method=RequestMethod.GET)
+	public ResponseEntity<EstadoAcademicoAlumnoDTO> obtenerEstadoAcademico(@PathVariable Long alumnoId) {
+		
+		EstadoAcademicoAlumnoDTO datos = new EstadoAcademicoAlumnoDTO();
+		
+		Alumno alumno = servicioAlumno.obtenerAlumnoPorId(alumnoId);
+		if(alumno == null) {
+			LOG.info("No se encontro alumno con id: "+alumnoId);
+			return ResponseEntity.notFound().build();
+		}
+		
+		List<InscripcionesCarrera> carrerasInscriptas = alumno.getInscripcionesCarrera();
+		
+		List<InscripcionesCurso> cursosActivos = new ArrayList<InscripcionesCurso>();
+		
+		List<InscripcionesCurso> cursosAprobados = new ArrayList<InscripcionesCurso>();
+		
+		List<InscripcionesCurso> cursosDesaprobados = new ArrayList<InscripcionesCurso>();
+		
+		for(InscripcionesCurso curso : alumno.getInscripcionesCurso()) {
+			if(curso.getFechaFinalizacion() == null) {
+				cursosActivos.add(curso);
+			} else if (curso.getNotaFinal().compareTo(new BigDecimal(6)) >= 0 ) {
+				
+			}
+		}
+		
+		
+	}
+
+}
+

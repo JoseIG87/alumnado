@@ -1,0 +1,15 @@
+package com.tecso.app.repository;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+
+import com.tecso.app.model.Alumno;
+import com.tecso.app.model.InscripcionesCurso;
+import com.tecso.app.model.Persona;
+
+public interface InscripcionesCursoRepository extends CrudRepository<InscripcionesCurso, Long> {
+	
+	@Query("select from inscripcionesCurso ic where ic.idAlumno=:idAlumno and ic.idPersona=:idPersona")
+	InscripcionesCurso findByPersonaIdAndAlumnoId(Alumno idAlumno, Persona idPersona);
+
+}

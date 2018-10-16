@@ -1,0 +1,14 @@
+package com.tecso.app.service.impl;
+
+import org.springframework.stereotype.Service;
+
+import com.tecso.app.service.CursoService;
+
+@Service
+public class CursoServiceImpl implements CursoService {
+
+	public CursoServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
